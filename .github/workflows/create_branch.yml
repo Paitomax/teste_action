@@ -23,7 +23,9 @@ jobs:
 
       - name: 'github.sha 1'
         run: echo "github.sha#${{ github.sha }}"    
-        
+
+      - name: '/usr/bin/git log'
+        run: echo "`/usr/bin/git log -1 --format=%H`"
       - name: 'Get Previous tag'
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
@@ -49,4 +51,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           branch: "refs/heads/release/${{ steps.semvers.outputs.minor }}"
-          sha: ${{ github.sha }}
+          sha: "`/usr/bin/git log -1 --format=%H`"
