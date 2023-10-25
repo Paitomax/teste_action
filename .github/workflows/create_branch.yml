@@ -19,10 +19,7 @@ jobs:
 
     
     steps:
-      - uses: actions/checkout@v1
-        with:
-          ref: dev
-          fetch-depth: 0
+      - uses: actions/checkout@v3
           
       - name: 'Get Previous tag'
         id: previoustag
@@ -45,4 +42,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           branch: "refs/heads/release/${{ steps.semvers.outputs.minor }}"
-          sha: ${{ github.sha }}
+          sha: refs/heads/dev
