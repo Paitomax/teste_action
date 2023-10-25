@@ -48,4 +48,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           branch: "refs/heads/release/${{ steps.semvers.outputs.minor }}"
-          sha: refs/heads/dev
+          sha: ${{ github.sha }}
