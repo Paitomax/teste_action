@@ -25,7 +25,8 @@ jobs:
         run: echo "github.sha#${{ github.sha }}"    
 
       - name: '/usr/bin/git log'
-        run: $SHA="`/usr/bin/git log -1 --format=%H`"
+        run: echo "`/usr/bin/git log -1 --format=%H`" >> $SHA
+        
       - name: 'Get Previous tag'
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
