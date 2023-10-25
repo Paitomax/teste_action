@@ -30,9 +30,12 @@ jobs:
         with:
           version: ${{ steps.previoustag.outputs.tag }}
 
+      - name: 'Exibe próxima versão'
+        uses: echo "refs/heads/release/${{ steps.semvers.outputs.minor }}"
+        
       - name: Create branch
         uses: peterjgrainger/action-create-branch@v2.2.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: ${{ steps.semvers.outputs.minor }}
+          branch: "refs/heads/release/${{ steps.semvers.outputs.minor }}"
