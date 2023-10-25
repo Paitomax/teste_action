@@ -30,8 +30,8 @@ jobs:
         with:
           version: ${{ steps.previoustag.outputs.tag }}
 
-      - name: 'Exibe próxima versão'
-        uses: echo "refs/heads/release/${{ steps.semvers.outputs.minor }}"
+      - name: 'Next version'
+        run: echo "Creating branch refs/heads/release/${{ steps.semvers.outputs.minor }}"
         
       - name: Create branch
         uses: peterjgrainger/action-create-branch@v2.2.0
