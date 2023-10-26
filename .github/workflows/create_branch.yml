@@ -18,13 +18,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: main
+          ref: dev
           fetch-depth: 0
 
       - name: 'Get base branch SHA'
         run: echo "SHA=$(/usr/bin/git log -1 --format=%H)" >> $GITHUB_ENV
         
-      - name: 'Get Previous tag'
+      - name: 'Get previous tag'
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         env:
