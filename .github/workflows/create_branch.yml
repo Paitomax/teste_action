@@ -18,10 +18,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: dev
+          ref: main
           fetch-depth: 0
 
-      - name: 'Get dev SHA'
+      - name: 'Get base branch SHA'
         run: echo "SHA=$(/usr/bin/git log -1 --format=%H)" >> $GITHUB_ENV
         
       - name: 'Get Previous tag'
@@ -36,7 +36,7 @@ jobs:
         with:
           version: ${{ steps.previoustag.outputs.tag }}
 
-      - name: 'Next version'
+      - name: 'Set branch name'
         run: |
          BRANCH_NAME=${{ steps.semvers.outputs.minor }}
          echo "BRANCH_NAME=${BRANCH_NAME//.0/.x}" >> $GITHUB_ENV
