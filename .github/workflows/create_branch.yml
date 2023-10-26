@@ -37,12 +37,14 @@ jobs:
           version: ${{ steps.previoustag.outputs.tag }}
 
       - name: 'Next version'
-        run: echo "Creating branch refs/heads/release/${{ steps.semvers.outputs.minor }}"
+        run: |
+         BRANCH_NAME=${{ steps.semvers.outputs.minor }}
+         echo "BRANCH_NAME=${BRANCH_NAME//.0/.x}" >> $GITHUB_ENV
         
       - name: Create branch
         uses: peterjgrainger/action-create-branch@v2.2.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: "refs/heads/release/${{ steps.semvers.outputs.minor }}"
+          branch: "refs/heads/release/${{ env.BRANCH_NAME }}"
           sha: ${{ env.SHA }}
